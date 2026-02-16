@@ -1,12 +1,24 @@
-import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
+import { fetchProducts } from '@/api/products'
+import type { Product } from '@/model/products.model'
 
-export const useCounterStore = defineStore('counter', () => {
-  const count = ref(0)
-  const doubleCount = computed(() => count.value * 2)
-  function increment() {
-    count.value++
+export const useProductStore = defineStore('product', {
+  state: () => ({
+    products: [] as Product[],
+    loading: false,
+    error: null as string | null
+  }),
+
+  actions: {
+    async loadProducts() {
+      this.loading = true
+      try {
+        this.products = await fetchProducts()
+      } catch {
+        this.error = 'Erro ao carregar produtos'
+      } finally {
+        this.loading = false
+      }
+    }
   }
-
-  return { count, doubleCount, increment }
 })
