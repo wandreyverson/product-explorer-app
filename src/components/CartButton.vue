@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { useCartStore } from '@/stores/cart.store'
+import { storeToRefs } from 'pinia'
 
 const cart = useCartStore()
+const { count } = storeToRefs(cart)
 </script>
 
 <template>
     <RouterLink to="/carrinho" class="cart-button">
-        🛒 Carrinho ({{ cart.count }})
+        🛒 Carrinho ({{ count }})
     </RouterLink>
 </template>
 

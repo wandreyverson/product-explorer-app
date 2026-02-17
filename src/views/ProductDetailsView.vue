@@ -20,7 +20,6 @@ function goBack() {
 </script>
 
 <template>
-
     <div class="container" v-if="product">
 
         <button class="back-button" @click="goBack">
@@ -29,12 +28,10 @@ function goBack() {
 
         <div class="product">
             <div class="image-section">
-
                 <img
                     :src="product.image"
                     class="image"
                 />
-
             </div>
 
             <div class="info-section">
@@ -66,13 +63,9 @@ function goBack() {
                     :product="product"
                     class="cart-button"
                 />
-
             </div>
-
         </div>
-
     </div>
-
 </template>
 
 <style scoped>
