@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import CartButton from './components/CardButton.vue'
+import CartButton from './components/CartButton.vue'
 </script>
 
 <template>
