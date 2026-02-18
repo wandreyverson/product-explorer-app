@@ -28,7 +28,7 @@ const cart = useCartStore()
 
     </div>
 
-    <h2 v-if="cart.items.length === 0" class="total">Total: R$ {{ cart.total.toFixed(2) }}</h2>
+    <h2 v-if="cart.items.length > 0" class="total">Total: R$ {{ cart.total.toFixed(2) }}</h2>
   </div>
 </template>
 
