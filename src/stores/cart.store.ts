@@ -84,7 +84,9 @@ export const useCartStore = defineStore('cart', {
                 (sum, item) => sum + item.quantity,
                 0
             )
-    }
+    },
+
+    persist: true
 })
 
 function loadFromLocalStorage(): CartItem[] {
