@@ -9,7 +9,7 @@ import CartButton from './components/CartButton.vue'
     <div class="header-container">
 
         <RouterLink to="/" class="logo">
-            🛍️ Product Explorer
+            🛍️ Explorador de Produtos
         </RouterLink>
 
         <CartButton />
@@ -27,7 +27,7 @@ import CartButton from './components/CartButton.vue'
 <style scoped>
 
 .header {
-    background: #111;
+    background: #414141c7;
     padding: 12px 24px;
 }
 
