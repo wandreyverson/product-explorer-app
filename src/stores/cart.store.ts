@@ -6,11 +6,9 @@ interface CartItem {
     quantity: number
 }
 
-const STORAGE_KEY = 'cart'
-
 export const useCartStore = defineStore('cart', {
     state: () => ({
-        items: loadFromLocalStorage() as CartItem[]
+        items: [] as CartItem[]
     }),
 
     actions: {
@@ -27,16 +25,12 @@ export const useCartStore = defineStore('cart', {
                     quantity: 1
                 })
             }
-
-            this.save()
         },
 
         remove(productId: number) {
             this.items = this.items.filter(
                 item => item.product.id !== productId
             )
-
-            this.save()
         },
 
         increase(productId: number) {
@@ -44,10 +38,7 @@ export const useCartStore = defineStore('cart', {
                 item => item.product.id === productId
             )
 
-            if (item) {
-                item.quantity++
-                this.save()
-            }
+            if (item) item.quantity++
         },
 
         decrease(productId: number) {
@@ -57,17 +48,11 @@ export const useCartStore = defineStore('cart', {
 
             if (item && item.quantity > 1) {
                 item.quantity--
-                this.save()
             }
-        },
-
-        save() {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(this.items))
         },
 
         clear() {
             this.items = []
-            localStorage.removeItem(STORAGE_KEY)
         }
     },
 
@@ -88,15 +73,3 @@ export const useCartStore = defineStore('cart', {
 
     persist: true
 })
-
-function loadFromLocalStorage(): CartItem[] {
-    const data = localStorage.getItem(STORAGE_KEY)
-
-    if (!data) return []
-
-    try {
-        return JSON.parse(data)
-    } catch {
-        return []
-    }
-}
